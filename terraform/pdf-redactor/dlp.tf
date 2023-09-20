@@ -28,10 +28,20 @@ resource "google_data_loss_prevention_inspect_template" "dlp_pdf_template" {
       name = "LAST_NAME"
     }
     info_types {
-      name = "PHONE_NUMBER"
-    }
-    info_types {
       name = "FIRST_NAME"
+    }
+    custom_info_types {
+      dictionary { 
+          word_list {
+              words = [
+                  "Federal Bureau of Investigation",
+                  "United States Air Force",
+                ]
+            }
+        }
+      info_type {
+          name = "US Government Agencies"
+        }
     }
   }
 
